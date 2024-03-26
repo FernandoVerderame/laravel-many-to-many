@@ -97,8 +97,8 @@
         </div>
 
         <div class="col-1 d-flex align-items-center">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="is_completed" name="is_completed" value="1" @if(old('is_completed', $project->is_completed)) checked @endif>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="button" id="is_completed" name="is_completed" value="1" @if(old('is_completed', $project->is_completed)) checked @endif>
                 <label class="form-check-label" for="is_completed">Completed</label>
             </div>
         </div>
