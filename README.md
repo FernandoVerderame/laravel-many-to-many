@@ -1,19 +1,19 @@
-## Esercizio di oggi: Laravel Boolfolio - Project Typology
+## Esercizio di oggi: Laravel Boolfolio - Project Technology
 
-Continuiamo a lavorare sul codice dei giorni scorsi, ma in una nuova repo e aggiungiamo una nuova entità Type. Questa entità rappresenta la tipologia di progetto ed è in relazione one to many con i progetti.
+Continuiamo a lavorare sul codice dei giorni scorsi, ma in una nuova repo e aggiungiamo una nuova entità `Technology`. Questa entità rappresenta le tecnologie utilizzate ed è in relazione many to many con i progetti.
 
 I task da svolgere sono diversi, ma alcuni di essi sono un ripasso di ciò che abbiamo fatto nelle lezioni dei giorni scorsi:
 
-- Creare il model Type.
-- Creare la migration per la tabella types.
-- Creare la migration di modifica per la tabella projects per aggiungere la chiave esterna.
-- Aggiungere ai model Type e Project i metodi per definire la relazione one to many.
-- Visualizzare nella pagina di dettaglio di un progetto la tipologia associata, se presente.
-- Permettere all’utente di associare una tipologia nella pagina di creazione e modifica di un progetto.
-- Gestire il salvataggio dell’associazione progetto-tipologia con opportune regole di validazione.
+- Creare la migration per la tabella technologies.
+- Creare il model `Technology`.
+- Creare la migration per la tabella pivot `project_technology`.
+- Aggiungere ai model `Technology` e `Project` i metodi per definire la relazione many to many.
+- Visualizzare nella pagina di dettaglio di un progetto le tecnologie utilizzate, se presenti.
+- Permettere all’utente di associare le tecnologie nella pagina di creazione e modifica di un progetto.
+- Gestire il salvataggio dell’associazione progetto-tecnologie con opportune regole di validazione.
 
 ### Bonus 1:
-Creare il seeder per il model Type.
+Creare il seeder per il model Technology.
 
 ### Bonus 2:
-Aggiungere le operazioni CRUD per il model Type, in modo da gestire le tipologie di progetto direttamente dal pannello di amministrazione.
+Aggiungere le operazioni CRUD per il model Technology, in modo da gestire le tecnologie utilizzate nei progetti direttamente dal pannello di amministrazione.
