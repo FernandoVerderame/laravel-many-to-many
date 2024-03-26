@@ -36,7 +36,7 @@ class Project extends Model
         return $this->belongsToMany(Technology::class);
     }
 
-    // Query Scope
+    // Query Scope Complete
     public function scopeCompleteFilter(Builder $query, $status)
     {
         if (!$status) return $query;
@@ -44,10 +44,19 @@ class Project extends Model
         return $query->whereIsCompleted($value);
     }
 
-    // Query Scope
+    // Query Scope Type
     public function scopeTypeFilter(Builder $query, $type_id)
     {
         if (!$type_id) return $query;
         return $query->whereTypeId($type_id);
+    }
+
+    // Query Scope Technology
+    public function scopeTechnologyFilter(Builder $query, $technology_id)
+    {
+        if (!$technology_id) return $query;
+        return $query->whereHas('technologies', function ($query) use ($technology_id) {
+            $query->where('technologies.id', $technology_id);
+        });
     }
 }
