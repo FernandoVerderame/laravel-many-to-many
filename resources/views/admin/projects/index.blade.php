@@ -25,8 +25,8 @@
     </form>
 </header>
 
-<table class="table table-hover table-dark border mb-4">
-    <thead>
+<table class="table table-hover table-secondary table-striped border mb-4">
+    <thead class="table-dark">
         <tr>
             <th scope="col">#</th>
             <th scope="col">Title</th>
