@@ -10,9 +10,15 @@
     <form action="{{ route('admin.projects.index') }}" method="GET">
         <div class="input-group">
             <select class="form-select" name="type_filter">
-                <option value="">Type</option>
+                <option value="">Types</option>
                 @foreach ($types as $type)
                     <option value="{{ $type->id }}" @if($type_filter == $type->id) selected @endif>{{ $type->label }}</option>
+                @endforeach
+            </select>
+            <select class="form-select" name="technology_filter">
+                <option value="">Technologies</option>
+                @foreach ($technologies as $technology)
+                    <option value="{{ $technology->id }}" @if($technology_filter == $technology->id) selected @endif>{{ $technology->label }}</option>
                 @endforeach
             </select>
             <select class="form-select" name="completed_filter">
@@ -20,7 +26,8 @@
                 <option value="completed" @if($completed_filter === 'completed') selected @endif>Completed</option>
                 <option value="drafts" @if($completed_filter === 'drafts') selected @endif>Work in progress</option>
             </select>
-            <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-filter me-2"></i>Status</button>
+            <a href="{{ route('admin.projects.index') }}" class="btn btn-outline-secondary" type="reset">Reset</a>
+            <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-filter me-2"></i>Filter</button>
         </div>
     </form>
 </header>
