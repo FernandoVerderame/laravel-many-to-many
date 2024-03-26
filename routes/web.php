@@ -3,7 +3,8 @@
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Guest\HomeController as GuestHomeController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
-use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\Admin\TechnologyController as AdminTechnologyController;
+use App\Http\Controllers\Admin\TypeController as AdminTypeController;
 use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -42,7 +43,10 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
 
 
     // Types Admin routes
-    Route::resource('/types', TypeController::class)->except('show');
+    Route::resource('/types', AdminTypeController::class)->except('show');
+
+    // Technologies Admin routes
+    Route::resource('/technologies', AdminTechnologyController::class)->except('show');
 });
 
 
