@@ -11,7 +11,7 @@
 
         <div class="col-6">
             <div class="mb-4">
-                <label for="title" class="form-label h3">Title</label>
+                <label for="title" class="form-label h4">Title</label>
                 <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @elseif(old('title', '')) is-valid @enderror" placeholder="Ex.: Laravel DC Comics" value="{{ old('title', $project->title) }}" required>
                 @error('title')
                     <div class="invalid-feedback">
@@ -27,14 +27,14 @@
         
         <div class="col-6">
             <div class="mb-4">
-                <label for="slug" class="form-label h3">Slug</label>
+                <label for="slug" class="form-label h4">Slug</label>
                 <input type="text" id="slug" class="form-control" value="{{ Str::slug(old('title', $project->title)) }}" disabled> 
             </div>   
         </div>
 
         <div class="col-12">
             <div class="mb-4">
-                <label for="description" class="form-label h3">Description</label>
+                <label for="description" class="form-label h4">Description</label>
                 <textarea type="text" name="description" id="description" class="form-control @error('description') is-invalid @elseif(old('description', '')) is-valid @enderror" placeholder="Project description..." rows="10" required>{{ old('description', $project->description) }}</textarea>
                 @error('description')
                     <div class="invalid-feedback">
@@ -48,9 +48,9 @@
             </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-6">
             <div class="mb-4">
-                <label for="type_id" class="form-label h3">Type Select</label>
+                <label for="type_id" class="form-label h4">Type Select</label>
                 <select name="type_id" id="type_id" class="form-select @error('type_id') is-invalid @elseif(old('type_id', '')) is-valid @enderror">
                     <option value="">Nothing</option>
                     @foreach ($types as $type)
@@ -65,9 +65,9 @@
             </div>
         </div>
 
-        <div class="col-6">
+        <div class="col-5">
             <div class="mb-4">
-                <label for="image" class="form-label h3">URL Image</label>
+                <label for="image" class="form-label h4">URL Image</label>
 
                 <div @class(['input-group', 'd-none' => !$project->image]) id="previous-image-field">
                     <button class="btn btn-outline-secondary" type="button" id="change-image-button">Change image</button>
@@ -89,17 +89,38 @@
         </div>
 
         <div class="col-1  d-flex align-items-center">
-            <div class="">
+            <div>
                 <img src="{{ old('image', $project->image) 
                 ? $project->printImage() 
                 : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=' }}" class="img-fluid" alt="{{ $project->image ? $project->title : 'preview' }}" id="preview">
             </div>
         </div>
 
-        <div class="col-1 d-flex align-items-center">
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="button" id="is_completed" name="is_completed" value="1" @if(old('is_completed', $project->is_completed)) checked @endif>
-                <label class="form-check-label" for="is_completed">Completed</label>
+        <div class="col-10">
+            <div class="my-4">
+                <label for="technologies[]" class="form-label h4">Insert project technologies</label>
+                <div class="form-group @error('technologies') is-invalid @enderror">
+                    @foreach ($technologies as $technology)
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="technologies[]" id="{{ "technology-$technology->id" }}" value="{{ $technology->id }}" @if(in_array($technology->id, old('technologies', $prev_technologies ?? []))) checked @endif>
+                            <label class="form-check-label" for="{{ "technology-$technology->id" }}">{{ $technology->label }}</label>
+                        </div> 
+                    @endforeach
+                </div>
+                @error('technologies')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+        </div>
+
+        <div class="col-2 d-flex justify-content-end align-items-center">
+            <div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="button" id="is_completed" name="is_completed" value="1" @if(old('is_completed', $project->is_completed)) checked @endif>
+                    <label class="form-check-label" for="is_completed">Completed</label>
+                </div>
             </div>
         </div>
 
