@@ -32,6 +32,7 @@
             <th scope="col">Title</th>
             <th scope="col">Slug</th>
             <th scope="col">Type</th>
+            <th scope="col">Technologies</th>
             <th scope="col">Status</th>
             <th scope="col">Created</th>
             <th scope="col">Updated</th>
@@ -56,6 +57,13 @@
                 @else
                     Nothing
                 @endif
+            </td>
+            <td>
+                @forelse ($project->technologies as $technology)
+                    <span class="badge rounded-pill align-middle text-bg-{{ $technology->color }}">{{ $technology->label }}</span>
+                @empty
+                    Nothing
+                @endforelse
             </td>
             <td>
                 <form action="{{ route('admin.projects.complete', $project->id) }}" method="POST" class="completion-form">
@@ -87,7 +95,7 @@
 
         @empty 
             <tr>
-                <td colspan="8">
+                <td colspan="9">
                     <h3 class="text-center">There aren't any projects.</h3>
                 </td>
             </tr>
