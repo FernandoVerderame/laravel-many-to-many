@@ -19,9 +19,18 @@
         <img src="{{ $project->printImage() }}" class="img-fluid" alt="{{ $project->title }}" class="me-2 float-start">
     @endif
     <p>{{ $project->description }}</p>
-    <div>
-        <strong>Created at:</strong> {{ $project->getFormattedDate('created_at', 'd-m-Y H:i:s') }}
-        <strong>Updated at:</strong> {{ $project->getFormattedDate('updated_at', 'd-m-Y H:i:s') }}
+    <div class="d-flex justify-content-between">
+        <div>
+            <strong>Created at:</strong> {{ $project->getFormattedDate('created_at', 'd-m-Y H:i:s') }}
+            <strong>Updated at:</strong> {{ $project->getFormattedDate('updated_at', 'd-m-Y H:i:s') }}
+        </div>
+        <div>
+            @forelse ($project->technologies as $technology)
+                <span class="badge rounded-pill text-bg-{{ $technology->color }}">{{ $technology->label }}</span>
+            @empty
+                Nothing
+            @endforelse
+        </div>
     </div>
 </div>
 
