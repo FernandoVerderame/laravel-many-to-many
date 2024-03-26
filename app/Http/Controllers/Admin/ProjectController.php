@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
@@ -40,8 +41,9 @@ class ProjectController extends Controller
     {
         $project = new Project();
         $types = Type::select('label', 'id')->get();
+        $technologies = Technology::select('label', 'id')->get();
 
-        return view('admin.projects.create', compact('project', 'types'));
+        return view('admin.projects.create', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -54,7 +56,8 @@ class ProjectController extends Controller
             'description' => 'required|string',
             'image' => 'nullable|image|mimes:png,jpg,jpeg',
             'is_completed' => 'nullable|boolean',
-            'type_id' => 'nullable|exists:types,id'
+            'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'nullable|exists:technologies,id',
         ], [
             'title.required' => 'Title must be mandatory',
             'title.min' => 'Title must be at least :min characters',
@@ -64,7 +67,8 @@ class ProjectController extends Controller
             'image.mimes' => 'Valid extensions are .png, .jpg, .jpeg',
             'is_completed.boolean' => 'The value of the completed field is invalid',
             'description.required' => 'Description must be mandatory',
-            'type_id.exists' => 'Invalid or non-existent category'
+            'type_id.exists' => 'Invalid or non-existent category',
+            'technologies.exists' => 'Invalid selected technologies'
         ]);
 
         $data = $request->all();
@@ -117,7 +121,8 @@ class ProjectController extends Controller
             'description' => 'required|string',
             'image' => 'nullable|image|mimes:png,jpg,jpeg',
             'is_completed' => 'nullable|boolean',
-            'type_id' => 'nullable|exists:types,id'
+            'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'nullable|exists:technologies,id'
         ], [
             'title.required' => 'Title must be mandatory',
             'title.min' => 'Title must be at least :min characters',
@@ -127,7 +132,8 @@ class ProjectController extends Controller
             'image.mimes' => 'Valid extensions are .png, .jpg, .jpeg',
             'is_completed.boolean' => 'The value of the completed field is invalid',
             'description.required' => 'Description must be mandatory',
-            'type_id.exists' => 'Invalid or non-existent category'
+            'type_id.exists' => 'Invalid or non-existent category',
+            'technologies.exists' => 'Invalid selected technologies'
         ]);
 
         $data = $request->all();
