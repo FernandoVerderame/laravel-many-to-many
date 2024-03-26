@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Guest\HomeController as GuestHomeController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,10 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
     Route::patch('/projects/{project}/complete', [AdminProjectController::class, 'toggleCompletion'])->name('projects.complete');
 
     Route::resource('projects', AdminProjectController::class)->withTrashed(['show', 'edit', 'update']);
+
+
+    // Types Admin routes
+    Route::resource('/types', TypeController::class)->except('show');
 });
 
 
