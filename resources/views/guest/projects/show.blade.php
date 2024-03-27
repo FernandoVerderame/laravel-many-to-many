@@ -29,7 +29,7 @@
                 <p class="card-text">{{ $project->description }}</p>
                 <div class="my-1 d-flex justify-content-end">
                     @forelse ($project->technologies as $technology)
-                    <span class="h3 mx-3" style="color: {{ $technology->color }}"><i class="{{ $technology->icon }}"></i></span>
+                    <span class="h2 mx-3" style="color: {{ $technology->color }}"><i class="{{ $technology->icon }}"></i></span>
                     @empty
                     Nothing
                     @endforelse
