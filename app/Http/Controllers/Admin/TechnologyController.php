@@ -34,12 +34,14 @@ class TechnologyController extends Controller
         $data = $request->validate(
             [
                 'label' => 'required|string|unique:technologies',
-                'color' => 'nullable|hex_color'
+                'color' => 'nullable|hex_color',
+                'icon' => 'nullable|unique:technologies'
             ],
             [
                 'label.required' => 'Technology label must be mandatory',
                 'label.unique' => 'There cannot be two technologies with the same label',
-                'color.hex_color' => 'Invalid color code'
+                'color.hex_color' => 'Invalid color code',
+                'icon' => 'There cannot be two technologies with the same icon'
             ]
         );
 
@@ -76,12 +78,14 @@ class TechnologyController extends Controller
         $data = $request->validate(
             [
                 'label' => ['required', 'string', Rule::unique('technologies')->ignore($technology->id)],
-                'color' => 'nullable|hex_color'
+                'color' => 'nullable|hex_color',
+                'icon' => ['nullable', Rule::unique('technologies')->ignore($technology->id)]
             ],
             [
                 'label.required' => 'Technology label must be mandatory',
                 'label.unique' => 'There cannot be two technologies with the same label',
-                'color.hex_color' => 'Invalid color code'
+                'color.hex_color' => 'Invalid color code',
+                'icon' => 'There cannot be two technologies with the same icon'
             ]
         );
 

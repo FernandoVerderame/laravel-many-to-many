@@ -44,10 +44,10 @@
             <th scope="col">Created</th>
             <th scope="col">Updated</th>
             <th>
-                <div class="d-flex justify-content-end gap-2">
-                    <a href="{{ route('admin.projects.trash') }}" class="btn btn-sm btn-secondary"><i class="fa-solid fa-trash me-2"></i>Show trash</a>
+                <div class="d-flex flex-column gap-2">
+                    <a href="{{ route('admin.projects.trash') }}" class="btn btn-sm btn-secondary"><i class="fa-solid fa-trash me-2"></i>Trash</a>
 
-                    <a href="{{ route('admin.projects.create') }}" class="btn btn-sm btn-success"><i class="fa-solid fa-plus me-2"></i>New Project</a>
+                    <a href="{{ route('admin.projects.create') }}" class="btn btn-sm btn-success"><i class="fa-solid fa-plus me-2"></i>Project</a>
                 </div>
             </th>
         </tr>
@@ -67,7 +67,7 @@
             </td>
             <td>
                 @forelse ($project->technologies as $technology)
-                    <span class="badge rounded-pill align-middle text-bg-{{ $technology->color }}">{{ $technology->label }}</span>
+                    <span class="align-middle mx-2" style="color: {{ $technology->color }}"><i class="{{ $technology->icon }} h3 m-0"></i></span>
                 @empty
                     Nothing
                 @endforelse
@@ -78,7 +78,6 @@
                     @method('PATCH')
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="button" id="is_completed" @if($project->is_completed) checked @endif>
-                        <label class="form-check-label" for="is_completed">{{ $project->is_completed ? 'Completed' : 'Work in progress' }}</label>
                     </div>
                 </form>
             </td>

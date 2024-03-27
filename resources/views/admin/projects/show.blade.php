@@ -14,19 +14,19 @@
     </p>
 </header>
 
-<div class="clearfix pb-4 border-bottom">
+<div class="clearfix py-4 border-bottom mb-3">
     @if($project->image)
         <img src="{{ $project->printImage() }}" class="img-fluid" alt="{{ $project->title }}" class="me-2 float-start">
     @endif
     <p>{{ $project->description }}</p>
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between align-items-center">
         <div>
             <strong>Created at:</strong> {{ $project->getFormattedDate('created_at', 'd-m-Y H:i:s') }}
             <strong>Updated at:</strong> {{ $project->getFormattedDate('updated_at', 'd-m-Y H:i:s') }}
         </div>
         <div>
             @forelse ($project->technologies as $technology)
-                <span class="badge rounded-pill text-bg-{{ $technology->color }}">{{ $technology->label }}</span>
+                <span style="color: {{ $technology->color }}" class="mx-3"><i class="{{ $technology->icon }} h2 m-0"></i></span>
             @empty
                 Nothing
             @endforelse

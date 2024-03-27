@@ -14,14 +14,14 @@ class TechnologySeeder extends Seeder
     public function run(): void
     {
         $technologies = [
-            ['label' => 'HTML', 'color' => 'light'],
-            ['label' => 'CSS', 'color' => 'primary'],
-            ['label' => 'ES6', 'color' => 'warning'],
-            ['label' => 'Bootstrap', 'color' => 'dark'],
-            ['label' => 'Vue', 'color' => 'success'],
-            ['label' => 'SQL', 'color' => 'secondary'],
-            ['label' => 'PHP', 'color' => 'info'],
-            ['label' => 'Laravel', 'color' => 'danger']
+            ['label' => 'HTML', 'color' => '#E44D26', 'icon' => 'fa-brands fa-html5'],
+            ['label' => 'CSS', 'color' => '#264DE4', 'icon' => 'fa-brands fa-css3-alt'],
+            ['label' => 'Bootstrap', 'color' => '#8211FA', 'icon' => 'fa-brands fa-bootstrap'],
+            ['label' => 'Vue', 'color' => '#41B883', 'icon' => 'fa-brands fa-vuejs'],
+            ['label' => 'PHP', 'color' => '#777BB3', 'icon' => 'fa-brands fa-php'],
+            ['label' => 'Laravel', 'color' => '#FF2D20', 'icon' => 'fa-brands fa-laravel'],
+            ['label' => 'SASS', 'color' => '#CD6799', 'icon' => 'fa-brands fa-sass'],
+            ['label' => 'JavaScript', 'color' => '#EFD81D', 'icon' => 'fa-brands fa-js']
         ];
 
         foreach ($technologies as $technology) {
@@ -29,6 +29,7 @@ class TechnologySeeder extends Seeder
 
             $new_technology->label = $technology['label'];
             $new_technology->color = $technology['color'];
+            $new_technology->icon = $technology['icon'];
 
             $new_technology->save();
         }

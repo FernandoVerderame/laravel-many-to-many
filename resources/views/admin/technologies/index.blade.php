@@ -13,6 +13,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Label</th>
+            <th scope="col">Icon</th>
             <th scope="col">Created</th>
             <th scope="col">Updated</th>
             <th>
@@ -28,7 +29,10 @@
         <tr>
             <th scope="row">{{ $technology->id }}</th>
             <td>
-                <span class="badge rounded-pill align-middle text-bg-{{ $technology->color }}">{{ $technology->label }}</span>
+                <span class="badge rounded-pill align-middle" style="background-color: {{ $technology->color }}">{{ $technology->label }}</span>
+            </td>
+            <td>
+                <span class="badge rounded-pill align-middle" style="color: {{ $technology->color }}"><i class="{{ $technology->icon }} h3 m-0"></i></span>
             </td>
             <td>{{ $technology->getFormattedDate('created_at') }}</td>
             <td>{{ $technology->getFormattedDate('updated_at') }}</td>
@@ -49,7 +53,7 @@
 
         @empty 
             <tr>
-                <td colspan="5">
+                <td colspan="6">
                     <h3 class="text-center">There aren't any technologies.</h3>
                 </td>
             </tr>
